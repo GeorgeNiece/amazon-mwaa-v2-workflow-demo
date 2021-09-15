@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT-0
 
 import time
-from airflow.operators import BaseOperator
+from airflow.models import BaseOperator
 from airflow.contrib.hooks.aws_hook import AwsHook
 from airflow.utils.decorators import apply_defaults
 
