@@ -53,7 +53,7 @@ The DAG contained at this project deploys uses the Movie Lens data set to deploy
 
 2 - Clone the code in this repository. 
 
-3 - Proceed with the following commands in the AWS Cloud9 Terminal. 
+3 - Proceed with the following commands in the AWS Cloud9 Terminal or use the script that is noted in the resource area
 
 ```
 npm install -g aws-cdk
