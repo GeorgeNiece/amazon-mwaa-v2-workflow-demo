@@ -9,7 +9,7 @@ This code sample is discussed in detail in this AWS [Blog Post](https://aws.amaz
 
 ### Architecture
 
-The AWS CDK Scrip contained in this repository deploys the following architecture.
+The AWS CDK Script contained in this repository deploys the following architecture.
 
 ![Architecture Diagram](docs/diagram_arch.png)
 
@@ -56,6 +56,8 @@ The DAG contained at this project deploys uses the Movie Lens data set to deploy
 3 - Proceed with the following commands in the AWS Cloud9 Terminal or use the script that is noted in the resource area
 
 ```
+
+git clone https://github.com/GeorgeNiece/amazon-mwaa-v2-workflow-demo.git
 npm install -g aws-cdk
 cd ~/environment/amazon-mwaa-workflow-demo
 python3 -m venv .env
@@ -83,10 +85,10 @@ python3 CreateMWAAVariables.py
     7.3 On "Environment Details", enter the Name of your preference
     7.4 On "DAG code in Amazon S3 > S3 Bucket", click "Browse" and select the Amazon S3 bucket created by the AWS CDK Script with the following pattern *cdk-mwaa-s3-mwaaconfigXXXXXXX*
     7.5 On "DAG code in Amazon S3 > DAGs folder", click "Browse" and select the "dags" folder inside the Bucket. Leave the rest of the settings with the defaults values and click "Next"
-    7.6 On "Networking > Virtual private cloud (VPC)", Select the VPC that matches the VPC-ID provided in the CDK Output
-    7.7 On "Networking > Subnet 1 and Subbnet 2", Select the Subnets that matches the *cdk-mwaa-vpc.mwaasubnetid1* and *cdk-mwaa-vpc.mwaasubnetid2* respectively provided in the CDK Output
+    7.6 On "Networking > Virtual private cloud (VPC)", Select the VPC that matches the VPC-ID provided in the CDK Output.  
+    7.7 On "Networking > Subnet 1 and Subbnet 2", Select the Subnets that matches the *mwaa_dag_subnetSubnet2* and *mwaa_dag_subnetSubnet1* respectively provided in the CDK Output
     7.8 On "Networking > Web server access", Select "Public network (No additional setup)", and ensure that "Create new security group" is checked.
-    7.7 Leave the rest of the parameters with the defaults values. Click "Next", and then click "Create Environment"
+    7.7 Leave the rest of the parameters with the defaults values, although never a bad idea to create tags, and even to update the new Execution Role naming. Click "Next", and then click "Create Environment"
     7.8 Click on the new environment and search for the "Execution Role". Click on the role name, you'll be re-directed to the IAM Role configuration. Click on "Attach Policy", search for the  *mwaa_airflow_policy* policy, select it and click "Attach"
     7.9 Return to the Amazon MWAA Service Console. Wait for the deployment to complete, click in the newly created environment name, search and click the Airflow User Interface link
     
@@ -95,8 +97,8 @@ python3 CreateMWAAVariables.py
     8.1 In the Airflow Web Server Interface, Click in the top panel "Admin > Variables", proceed to load the JSON file generated in step 5
     8.2 Return to the DAGs pannel, Click on the *mwaa_blogpost_data_pipeline* Dag and proceed to inspect the "Tree View" and "Graph View" of the DAG
     8.3 Enable the Dag by clicking on the "Off" icon in the top left. It will transition to "On" and one execution of the dag will be scheduled and executed.
-    8.4 Inspect the transitions of the Dag, the Amazon S3 Buckets involved in the Data Pipelenie, Amazon EMR service (Cluster Creation and Termination), and AWS Glue Crawler.
-    8.5 Finaly in the Aamazon S3 Bucket *datalake_processed_bucket/athena_results* you'll find the results of this data pipelinee in a CSV Format.
+    8.4 Inspect the transitions of the Dag, the Amazon S3 Buckets involved in the Data Pipeline, Amazon EMR service (Cluster Creation and Termination), and AWS Glue Crawler.
+    8.5 Finaly in the Aamazon S3 Bucket *cdk-mwaa-s3-datalakeprocessed*/athena_results* you'll find the results of this data pipelinee in a CSV Format.
 
 #### Cleanup
 
